@@ -71,6 +71,11 @@ var fight = function(enemyName) {
 };
 
 // fight each enemy-robot by looping over them and fighting them one at a time
+var startGame = function(){
+  //Reset player stats
+  playerHealth = 100;
+  playerAttack = 10;
+  playerMoney = 10;
 for (var i = 0; i < enemyNames.length; i++) {
   // if player is still alive, keep fighting
   if (playerHealth > 0) {
@@ -83,10 +88,6 @@ for (var i = 0; i < enemyNames.length; i++) {
     // reset enemyHealth before starting new fight
     enemyHealth = 50;
 
-    // use debugger to pause script from running and check what's going on at that moment in the code
-    // debugger;
-
-    // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
     fight(pickedEnemyName);
   }
   // if player isn't alive, stop the game
@@ -95,3 +96,25 @@ for (var i = 0; i < enemyNames.length; i++) {
     break;
   }
 }
+endGame();
+};
+// Function to end the game
+var endGame = function (){
+  //If player still alive, player wins!
+  if (playerHealth > 0){
+    window.alert("Great job, you've survive the game! You now have a score of" + playerMoney +  ".");
+  }else{
+    window.alert("You have lost the battle");
+  }
+  var playAgainConfirm = window.alert("Would you like to Play again?");
+  if (playAgainConfirm){
+    // Restart the game
+    startGame();
+  }else{
+    window.alert("Thank you for playing Robot Gladiators! Come back soon!")
+  }
+};
+//Play again
+startGame();
+//Starts the game when loaded
+startGame();
